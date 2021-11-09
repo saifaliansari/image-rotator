@@ -1,0 +1,22 @@
+.imageConfiguration {
+  background-color: lightgray;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rotateConfig {
+  margin-top: 10px;
+}
+
+.rotateConfig__button {
+  background-color: blue;
+  color: white;
+  margin-left: 10px;
+  border-color: transparent;
+}
+
+.rotateConfig__degree{
+  margin-left: 10px;
+}

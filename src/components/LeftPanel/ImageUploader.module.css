@@ -1,0 +1,21 @@
+.imageUploadContainer {
+  height: 100px;
+  background-color: lightgray;
+  border-bottom: gray 1px solid;
+  display: flex;
+}
+
+.imageUploadContainer label {
+  padding: 10px;
+  background: blue;
+  color: white;
+  display: block;
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  border-radius: 45px;
+}
+
+.imageUploadContainer input {
+  display: none;
+}
