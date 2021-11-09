@@ -1,0 +1,12 @@
+.imageDisplayContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.processingTime {
+  align-self: end;
+}
+
+.imageDisplayCanvasContainer {
+  margin: auto;
+}

@@ -7,7 +7,7 @@ const ImageConfiguration = () => {
       <label>Height</label>
       <div className={classes.rotateConfig}>
         <label>Rotate:</label>
-        <input className = {classes.rotateConfig__degree} type="text" maxlength="3" size="3"></input>
+        <input className = {classes.rotateConfig__degree} type="text" maxLength="3" size="3"></input>
         <button className={classes.rotateConfig__button}>Apply</button>
       </div>
     </div>

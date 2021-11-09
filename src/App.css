@@ -1,8 +1,8 @@
 body {
   margin: 0;
 }
-.App{
-  height:100vh;
+.App {
+  height: 100vh;
 }
 .header {
   background-color: #40e0d0;
@@ -16,8 +16,8 @@ body {
   line-height: 50px;
 }
 
-main{
+main {
   display: flex;
   flex-direction: row;
-  height:100%
+  height: calc(100% - 50px);
 }
