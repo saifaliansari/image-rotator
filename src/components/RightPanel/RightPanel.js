@@ -1,8 +1,8 @@
 import ImageDisplay from "./ImageDisplay";
 import classes from "./RightPanel.module.css";
-const RightPanel = () => {
+const RightPanel = (props) => {
   return <div className={classes.rightPanel}>
-    <ImageDisplay></ImageDisplay>
+    <ImageDisplay imageInfo = {props.imageInfo} ></ImageDisplay>
   </div>;
 };
 

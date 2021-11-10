@@ -1,10 +1,16 @@
 import ImageUploader from'./ImageUploader';
 import ImageConfiguration from './ImageConfiguration';
 import classes from './LeftPanel.module.css'
-const LeftPanel = () => {
+
+  
+const LeftPanel = (props) => {
+  const imageUploadHandler = (imageInfo)=>{
+    props.onImageUploaded(imageInfo);
+  }
+
   return <div className={classes.leftPanel}> 
-    <ImageUploader></ImageUploader>
-    <ImageConfiguration></ImageConfiguration>
+    <ImageUploader onImageUploaded = {imageUploadHandler}></ImageUploader>
+    <ImageConfiguration imageInfo = {props.imageInfo}></ImageConfiguration>
     </div>;
 };
 

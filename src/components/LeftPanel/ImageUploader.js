@@ -1,6 +1,28 @@
+import { useRef } from "react";
 import classes from "./ImageUploader.module.css";
-const ImageUploader = () => {
-  const onImagePicked = () => {};
+const ImageUploader = (props) => {
+  const canvasRef = useRef();
+  const onImagePicked = (event) => {
+    if (event.target.files.length === 0) {
+      return;
+    }
+    const image = new Image();
+    const imageFile = event.target.files[0];
+    image.src = window.URL.createObjectURL(imageFile);
+    image.onload = () => {
+      canvasRef.current.width = image.width;
+      canvasRef.current.height = image.height;
+      canvasRef.current.getContext("2d").drawImage(image, 0, 0);
+      const imageData = canvasRef.current
+        .getContext("2d")
+        .getImageData(0, 0, image.width, image.height);
+      const imageInfo = {
+        fileName: imageFile.name,
+        imageData: imageData,
+      };
+      props.onImageUploaded(imageInfo);
+    };
+  };
 
   return (
     <div className={classes.imageUploadContainer}>
@@ -13,6 +35,7 @@ const ImageUploader = () => {
           onChange={onImagePicked}
         />
       </label>
+      <canvas style={{ display: "none" }} ref={canvasRef} />
     </div>
   );
 };

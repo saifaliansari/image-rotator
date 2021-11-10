@@ -1,8 +1,11 @@
 import LeftPanel from "./components/LeftPanel/LeftPanel";
 import RightPanel from "./components/RightPanel/RightPanel";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [imageInfo, setImageInfo] = useState(null);
+
   return (
     <div className="App">
       <div className="header">
@@ -10,8 +13,8 @@ function App() {
       </div>
 
       <main className="main">
-        <LeftPanel></LeftPanel>
-        <RightPanel></RightPanel>
+        <LeftPanel imageInfo = {imageInfo} onImageUploaded={setImageInfo}></LeftPanel>
+        <RightPanel imageInfo={imageInfo} ></RightPanel>
       </main>
     </div>
   );
