@@ -10,7 +10,7 @@ const LeftPanel = (props) => {
 
   return <div className={classes.leftPanel}> 
     <ImageUploader onImageUploaded = {imageUploadHandler}></ImageUploader>
-    <ImageConfiguration imageInfo = {props.imageInfo}></ImageConfiguration>
+    <ImageConfiguration imageInfo = {props.imageInfo} onApplyRotation = {props.onApplyRotation}></ImageConfiguration>
     </div>;
 };
 

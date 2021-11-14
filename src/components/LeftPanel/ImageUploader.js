@@ -19,6 +19,7 @@ const ImageUploader = (props) => {
       const imageInfo = {
         fileName: imageFile.name,
         imageData: imageData,
+        processingTime:0
       };
       props.onImageUploaded(imageInfo);
     };
