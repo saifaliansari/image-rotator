@@ -1,5 +1,5 @@
-import LeftPanel from "./components/ImageConfigurationPanel/LeftPanel";
-import RightPanel from "./components/ImageDisplayPanel/RightPanel";
+import ImageConfigurationPanel from "./components/ImageConfigurationPanel/ImageConfigurationPanel";
+import ImageViewPanel from "./components/ImageViewPanel/ImageViewPanel";
 import rotate from "./utils/imageRotationUtil";
 import "./App.css";
 import { useState } from "react";
@@ -48,7 +48,6 @@ function App() {
       alert(error.message);
     }
   };
-
   return (
     <div className="App">
       <div className="header">
@@ -56,12 +55,12 @@ function App() {
       </div>
 
       <main className="main">
-        <LeftPanel
+        <ImageConfigurationPanel
           imageInfo={rotatedImageInfo}
           onImageUploaded={imageUploadHandler}
           onApplyRotation={rotationChangeHandler}
-        ></LeftPanel>
-        <RightPanel imageInfo={rotatedImageInfo}></RightPanel>
+        ></ImageConfigurationPanel>
+        <ImageViewPanel imageInfo={rotatedImageInfo}></ImageViewPanel>
       </main>
     </div>
   );

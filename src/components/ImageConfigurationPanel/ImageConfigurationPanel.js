@@ -1,9 +1,9 @@
 import ImageUploader from'./ImageUploader';
 import ImageConfiguration from './ImageConfiguration';
-import classes from './LeftPanel.module.css'
+import classes from './ImageConfigurationPanel.module.css'
 
   
-const LeftPanel = (props) => {
+const ImageConfigurationPanel = (props) => {
   const imageUploadHandler = (imageInfo)=>{
     props.onImageUploaded(imageInfo);
   }
@@ -14,4 +14,4 @@ const LeftPanel = (props) => {
     </div>;
 };
 
-export default LeftPanel;
+export default ImageConfigurationPanel;

@@ -13,7 +13,11 @@
   width: 150px;
   margin: auto;
   text-align: center;
-  border-radius: 45px;
+  cursor:pointer;
+}
+
+.imageUploadContainer label:hover {
+ opacity:0.7;
 }
 
 .imageUploadContainer input {
