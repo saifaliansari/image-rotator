@@ -1,5 +1,5 @@
-import LeftPanel from "./components/LeftPanel/LeftPanel";
-import RightPanel from "./components/RightPanel/RightPanel";
+import LeftPanel from "./components/ImageConfigurationPanel/LeftPanel";
+import RightPanel from "./components/ImageDisplayPanel/RightPanel";
 import rotate from "./utils/imageRotationUtil";
 import "./App.css";
 import { useState } from "react";
