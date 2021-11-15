@@ -1,0 +1,20 @@
+.rotateConfig {
+    margin-top: 10px;
+  }
+  
+  .rotateConfig__button {
+    background-color: blue;
+    color: white;
+    margin-left: 10px;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  
+  .rotateConfig__button:hover {
+    opacity: 0.7;
+  }
+  
+  .rotateConfig__degree {
+    margin-left: 10px;
+  }
+  
