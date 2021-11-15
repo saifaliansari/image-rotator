@@ -1,13 +1,13 @@
 import ImageUploader from'./ImageUploader';
-import ImageConfiguration from './ImageConfiguration';
+import ImageConfiguration from './ImageDetails';
 import classes from './ImageConfigurationPanel.module.css'
 
   
 const ImageConfigurationPanel = (props) => {
 
   return <div className={classes.leftPanel}> 
-    <ImageUploader onImageUploaded = {props.onImageUploaded}></ImageUploader>
-    <ImageConfiguration imageInfo = {props.imageInfo} onApplyRotation = {props.onApplyRotation}></ImageConfiguration>
+    <ImageUploader setImageInfo = {props.setImageInfo} setRotatedImageInfo = {props.setRotatedImageInfo}></ImageUploader>
+    <ImageConfiguration rotatedImageInfo = {props.rotatedImageInfo} imageInfo = {props.imageInfo} setRotatedImageInfo = {props.setRotatedImageInfo}></ImageConfiguration>
     </div>;
 };
 

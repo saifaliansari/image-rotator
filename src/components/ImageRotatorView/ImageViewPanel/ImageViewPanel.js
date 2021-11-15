@@ -4,7 +4,7 @@ import classes from "./ImageViewPanel.module.css";
 const ImageViewPanel = (props) => {
   return (
     <div className={classes.rightPanel}>
-      <ImageDisplay imageInfo={props.imageInfo}></ImageDisplay>
+      <ImageDisplay rotatedImageInfo={props.rotatedImageInfo}></ImageDisplay>
     </div>
   );
 };

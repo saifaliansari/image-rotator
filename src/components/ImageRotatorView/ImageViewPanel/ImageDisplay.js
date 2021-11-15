@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import classes from "./ImageDisplay.module.css";
 const ImageDisplay = (props) => {
   const canvasRef = useRef();
-  const imageData = props.imageInfo && props.imageInfo.imageData;
-  const processingTime = props.imageInfo && props.imageInfo.processingTime;
+  const imageData = props.rotatedImageInfo && props.rotatedImageInfo.imageData;
+  const processingTime = props.rotatedImageInfo && props.rotatedImageInfo.processingTime;
   const canvas = canvasRef.current;
   useEffect(() => {
     if ((canvas !== null) & (imageData !== null)) {

@@ -19,9 +19,19 @@ const ImageUploader = (props) => {
       const imageInfo = {
         fileName: imageFile.name,
         imageData: imageData,
-        processingTime:0
+        rotationAngle: 0,
+        processingTime: 0,
       };
-      props.onImageUploaded(imageInfo);
+      props.setImageInfo((state) => {
+        return {
+          ...imageInfo
+        };
+      });
+      props.setRotatedImageInfo((state) => {
+        return {
+          ...imageInfo
+        };
+      });
     };
   };
 
