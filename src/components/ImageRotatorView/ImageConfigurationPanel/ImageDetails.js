@@ -10,9 +10,9 @@ const ImageConfiguration = (props) => {
 
   return (
     <div className={classes.imageDetails}>
-      <label>{`File: ${fileName}`}</label>
-      <label>{`Width: ${width}`}</label>
-      <label>{`Height: ${height}`}</label>
+      <span>{`File: ${fileName}`}</span>
+      <span>{`Width: ${width}`}</span>
+      <span>{`Height: ${height}`}</span>
       <ImageRotationConfigView
         setRotatedImageInfo={setRotatedImageInfo}
         rotatedImageInfo={rotatedImageInfo}

@@ -43,14 +43,16 @@ const ImageRotationConfigView = (props) => {
 
   return (
     <div className={classes.rotateConfig}>
-      <label>Rotate:</label>
-      <input
-        className={classes.rotateConfig__degree}
-        type="text"
-        maxLength="3"
-        size="3"
-        ref={rotationDegreeInputRef}
-      />
+      <label>
+        Rotate:
+        <input
+          className={classes.rotateConfig__degree}
+          type="text"
+          maxLength="3"
+          size="3"
+          ref={rotationDegreeInputRef}
+        />
+      </label>
       <button type="button" className={classes.rotateConfig__button} onClick={rotateChangeHandler}>
         Apply
       </button>
