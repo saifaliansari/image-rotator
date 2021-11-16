@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import rotate from "../../../utils/imageRotationUtil";
-import classes from "./ImageRotationConfigView.module.css";
+import { React, useEffect, useRef } from 'react';
+import rotate from '../../../utils/imageRotationUtil';
+import classes from './ImageRotationConfigView.module.css';
 
 const rotateImage = (imageInfo, angle) => {
   try {
@@ -15,27 +15,28 @@ const rotateImage = (imageInfo, angle) => {
     };
   } catch (error) {
     alert(error.message);
+    return null;
   }
 };
 
 const ImageRotationConfigView = (props) => {
   const rotationDegreeInputRef = useRef();
+  const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = props;
 
   const rotateChangeHandler = () => {
     const angle = rotationDegreeInputRef.current.value;
-    if (!isNaN(parseFloat(angle))) {
-      if (!props.imageInfo) {
-        return alert(`Please select an image first`);
+    if (!Number.isNaN(parseFloat(angle))) {
+      if (!imageInfo) {
+        alert('Please select an image first');
       }
-      const rotatedImageInfo = rotateImage(props.imageInfo, angle);
-      props.setRotatedImageInfo((state) => {
-        return rotatedImageInfo;
-      });
+      const newRotatedImageInfo = rotateImage(imageInfo, angle);
+      if (newRotatedImageInfo) {
+        setRotatedImageInfo(() => newRotatedImageInfo);
+      }
     }
   };
 
-  const rotationAngle =
-    (props.rotatedImageInfo && props.rotatedImageInfo.rotationAngle) || "";
+  const rotationAngle = (rotatedImageInfo && rotatedImageInfo.rotationAngle) || '';
   useEffect(() => {
     rotationDegreeInputRef.current.value = rotationAngle;
   }, [rotationAngle]);
@@ -49,11 +50,8 @@ const ImageRotationConfigView = (props) => {
         maxLength="3"
         size="3"
         ref={rotationDegreeInputRef}
-      ></input>
-      <button
-        className={classes.rotateConfig__button}
-        onClick={rotateChangeHandler}
-      >
+      />
+      <button type="button" className={classes.rotateConfig__button} onClick={rotateChangeHandler}>
         Apply
       </button>
     </div>

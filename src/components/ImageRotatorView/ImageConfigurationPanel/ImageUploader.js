@@ -1,7 +1,9 @@
-import { useRef } from "react";
-import classes from "./ImageUploader.module.css";
+import React, { useRef } from 'react';
+import classes from './ImageUploader.module.css';
+
 const ImageUploader = (props) => {
   const canvasRef = useRef();
+  const { setImageInfo, setRotatedImageInfo } = props;
   const onImagePicked = (event) => {
     if (event.target.files.length === 0) {
       return;
@@ -12,26 +14,22 @@ const ImageUploader = (props) => {
     image.onload = () => {
       canvasRef.current.width = image.width;
       canvasRef.current.height = image.height;
-      canvasRef.current.getContext("2d").drawImage(image, 0, 0);
+      canvasRef.current.getContext('2d').drawImage(image, 0, 0);
       const imageData = canvasRef.current
-        .getContext("2d")
+        .getContext('2d')
         .getImageData(0, 0, image.width, image.height);
       const imageInfo = {
         fileName: imageFile.name,
-        imageData: imageData,
+        imageData,
         rotationAngle: 0,
         processingTime: 0,
       };
-      props.setImageInfo((state) => {
-        return {
-          ...imageInfo
-        };
-      });
-      props.setRotatedImageInfo((state) => {
-        return {
-          ...imageInfo
-        };
-      });
+      setImageInfo(() => ({
+        ...imageInfo,
+      }));
+      setRotatedImageInfo(() => ({
+        ...imageInfo,
+      }));
     };
   };
 
@@ -39,14 +37,9 @@ const ImageUploader = (props) => {
     <div className={classes.imageUploadContainer}>
       <label>
         Select File
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={onImagePicked}
-        />
+        <input type="file" name="image" accept="image/*" onChange={onImagePicked} />
       </label>
-      <canvas style={{ display: "none" }} ref={canvasRef} />
+      <canvas style={{ display: 'none' }} ref={canvasRef} />
     </div>
   );
 };

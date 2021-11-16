@@ -1,19 +1,12 @@
-import ImageRotationConfigView from "./ImageRotationConfigView";
-import classes from "./ImageDetails.module.css";
+import React from 'react';
+import ImageRotationConfigView from './ImageRotationConfigView';
+import classes from './ImageDetails.module.css';
 
 const ImageConfiguration = (props) => {
-  const fileName =
-    (props.rotatedImageInfo && props.rotatedImageInfo.fileName) || "";
-  const width =
-    (props.rotatedImageInfo &&
-      props.rotatedImageInfo.imageData &&
-      props.rotatedImageInfo.imageData.width) ||
-    "";
-  const height =
-    (props.rotatedImageInfo &&
-      props.rotatedImageInfo.imageData &&
-      props.rotatedImageInfo.imageData.height) ||
-    "";
+  const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = props;
+  const fileName = (rotatedImageInfo && rotatedImageInfo.fileName) || '';
+  const width = (rotatedImageInfo && rotatedImageInfo.imageData && rotatedImageInfo.imageData.width) || '';
+  const height = (rotatedImageInfo && rotatedImageInfo.imageData && rotatedImageInfo.imageData.height) || '';
 
   return (
     <div className={classes.imageDetails}>
@@ -21,10 +14,10 @@ const ImageConfiguration = (props) => {
       <label>{`Width: ${width}`}</label>
       <label>{`Height: ${height}`}</label>
       <ImageRotationConfigView
-        setRotatedImageInfo={props.setRotatedImageInfo}
-        rotatedImageInfo = {props.rotatedImageInfo}
-        imageInfo={props.imageInfo}
-      ></ImageRotationConfigView>
+        setRotatedImageInfo={setRotatedImageInfo}
+        rotatedImageInfo={rotatedImageInfo}
+        imageInfo={imageInfo}
+      />
     </div>
   );
 };
