@@ -28,6 +28,7 @@ const ImageRotationConfigView = (props) => {
     if (!Number.isNaN(parseFloat(angle))) {
       if (!imageInfo) {
         alert('Please select an image first');
+        return;
       }
       const newRotatedImageInfo = rotateImage(imageInfo, angle);
       if (newRotatedImageInfo) {
