@@ -17,3 +17,9 @@
 .rotateConfig__degree {
   margin-left: 10px;
 }
+
+.errorText {
+  color:red;
+  margin:0;
+  font-size:0.7rem;
+}

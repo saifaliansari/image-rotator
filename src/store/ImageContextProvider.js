@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-
 import ImageContext from './image-context';
 
 const defaultImageState = {
@@ -36,14 +35,14 @@ const ImageProvider = (props) => {
   };
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const cartContext = {
+  const imageContext = {
     imageInfo: imageState.imageInfo,
     rotatedImageInfo: imageState.rotatedImageInfo,
     setImageInfo: setImageInfoHandler,
     setRotatedImageInfo: setRotatedImageInfoHandler,
   };
 
-  return <ImageContext.Provider value={cartContext}>{children}</ImageContext.Provider>;
+  return <ImageContext.Provider value={imageContext}>{children}</ImageContext.Provider>;
 };
 
 export default ImageProvider;

@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import ImageContext from '../../../store/image-context';
 import rotate from '../../../utils/imageRotationUtil';
 import classes from './ImageRotationConfigView.module.css';
@@ -23,11 +25,13 @@ const rotateImage = (imageInfo, angle) => {
 const ImageRotationConfigView = () => {
   const rotationDegreeInputRef = useRef();
   const imageCtx = useContext(ImageContext);
+  const [angleIsValid, setAngleIsValid] = useState(true);
   const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = imageCtx;
 
   const rotateChangeHandler = () => {
     const angle = rotationDegreeInputRef.current.value;
     if (!Number.isNaN(parseFloat(angle))) {
+      setAngleIsValid(true);
       if (!imageInfo) {
         alert('Please select an image first');
         return;
@@ -36,6 +40,8 @@ const ImageRotationConfigView = () => {
       if (newRotatedImageInfo) {
         setRotatedImageInfo(newRotatedImageInfo);
       }
+    } else {
+      setAngleIsValid(false);
     }
   };
 
@@ -59,6 +65,7 @@ const ImageRotationConfigView = () => {
       <button type="button" className={classes.rotateConfig__button} onClick={rotateChangeHandler}>
         Apply
       </button>
+      {!angleIsValid && <p className={classes.errorText}> Enter valid angle value</p>}
     </div>
   );
 };
