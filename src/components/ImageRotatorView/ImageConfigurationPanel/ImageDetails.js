@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ImageRotationConfigView from './ImageRotationConfigView';
 import classes from './ImageDetails.module.css';
+import ImageContext from '../../../store/image-context';
 
-const ImageConfiguration = (props) => {
-  const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = props;
+const ImageConfiguration = () => {
+  const imageCtx = useContext(ImageContext);
+  const { rotatedImageInfo } = imageCtx;
   const fileName = (rotatedImageInfo && rotatedImageInfo.fileName) || '';
   const width = (rotatedImageInfo && rotatedImageInfo.imageData && rotatedImageInfo.imageData.width) || '';
   const height = (rotatedImageInfo && rotatedImageInfo.imageData && rotatedImageInfo.imageData.height) || '';
@@ -13,11 +15,7 @@ const ImageConfiguration = (props) => {
       <span>{`File: ${fileName}`}</span>
       <span>{`Width: ${width}`}</span>
       <span>{`Height: ${height}`}</span>
-      <ImageRotationConfigView
-        setRotatedImageInfo={setRotatedImageInfo}
-        rotatedImageInfo={rotatedImageInfo}
-        imageInfo={imageInfo}
-      />
+      <ImageRotationConfigView />
     </div>
   );
 };

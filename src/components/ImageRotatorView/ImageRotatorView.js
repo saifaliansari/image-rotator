@@ -1,21 +1,13 @@
-import { React, useState } from 'react';
+import React from 'react';
 import ImageConfigurationPanel from './ImageConfigurationPanel/ImageConfigurationPanel';
 import ImageViewPanel from './ImageViewPanel/ImageViewPanel';
+import ImageProvider from '../../store/ImageContextProvider';
 
-const ImageRotatorView = () => {
-  const [imageInfo, setImageInfo] = useState(null);
-  const [rotatedImageInfo, setRotatedImageInfo] = useState(null);
-  return (
-    <>
-      <ImageConfigurationPanel
-        imageInfo={imageInfo}
-        rotatedImageInfo={rotatedImageInfo}
-        setImageInfo={setImageInfo}
-        setRotatedImageInfo={setRotatedImageInfo}
-      />
-      <ImageViewPanel rotatedImageInfo={rotatedImageInfo} />
-    </>
-  );
-};
+const ImageRotatorView = () => (
+  <ImageProvider>
+    <ImageConfigurationPanel />
+    <ImageViewPanel />
+  </ImageProvider>
+);
 
 export default ImageRotatorView;

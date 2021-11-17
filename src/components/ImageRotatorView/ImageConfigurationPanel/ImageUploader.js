@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
+import ImageContext from '../../../store/image-context';
 import classes from './ImageUploader.module.css';
 
-const ImageUploader = (props) => {
+const ImageUploader = () => {
   const canvasRef = useRef();
-  const { setImageInfo, setRotatedImageInfo } = props;
+  const imageCtx = useContext(ImageContext);
   const onImagePicked = (event) => {
     if (event.target.files.length === 0) {
       return;
@@ -24,12 +25,9 @@ const ImageUploader = (props) => {
         rotationAngle: 0,
         processingTime: 0,
       };
-      setImageInfo(() => ({
+      imageCtx.setImageInfo({
         ...imageInfo,
-      }));
-      setRotatedImageInfo(() => ({
-        ...imageInfo,
-      }));
+      });
     };
   };
 

@@ -1,4 +1,5 @@
-import { React, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import ImageContext from '../../../store/image-context';
 import rotate from '../../../utils/imageRotationUtil';
 import classes from './ImageRotationConfigView.module.css';
 
@@ -19,9 +20,10 @@ const rotateImage = (imageInfo, angle) => {
   }
 };
 
-const ImageRotationConfigView = (props) => {
+const ImageRotationConfigView = () => {
   const rotationDegreeInputRef = useRef();
-  const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = props;
+  const imageCtx = useContext(ImageContext);
+  const { imageInfo, rotatedImageInfo, setRotatedImageInfo } = imageCtx;
 
   const rotateChangeHandler = () => {
     const angle = rotationDegreeInputRef.current.value;
@@ -32,7 +34,7 @@ const ImageRotationConfigView = (props) => {
       }
       const newRotatedImageInfo = rotateImage(imageInfo, angle);
       if (newRotatedImageInfo) {
-        setRotatedImageInfo(() => newRotatedImageInfo);
+        setRotatedImageInfo(newRotatedImageInfo);
       }
     }
   };

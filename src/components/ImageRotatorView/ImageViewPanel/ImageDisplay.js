@@ -1,9 +1,11 @@
-import { React, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import ImageContext from '../../../store/image-context';
 import classes from './ImageDisplay.module.css';
 
-const ImageDisplay = (props) => {
+const ImageDisplay = () => {
   const canvasRef = useRef();
-  const { rotatedImageInfo } = props;
+  const imageCtx = useContext(ImageContext);
+  const { rotatedImageInfo } = imageCtx;
   const imageData = rotatedImageInfo && rotatedImageInfo.imageData;
   const processingTime = rotatedImageInfo && rotatedImageInfo.processingTime;
   const canvas = canvasRef.current;
