@@ -2,7 +2,7 @@ import React, {
   useContext, useEffect, useRef, useState,
 } from 'react';
 import ImageContext from '../../../store/image-context';
-import rotate from '../../../utils/imageRotationUtil';
+import rotate from '../../../lib/imageRotator';
 import classes from './ImageRotationConfigView.module.css';
 
 const rotateImage = (imageInfo, angle) => {

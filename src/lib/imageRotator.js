@@ -1,4 +1,10 @@
+const SINGLE_PIXEL_DATA_LEN = 4;
+const TWO_PI = Math.PI * 2.0;
+const PI_BY_2 = Math.PI / 2;
 const isImageDataValid = (image) => {
+  if (!image) {
+    throw new Error('No image data provided');
+  }
   if (typeof image !== 'object' || !image.data || !image.width || !image.height) {
     throw new Error('Invalid ImageData provided');
   }
@@ -11,7 +17,7 @@ const isImageDataValid = (image) => {
 
 const calculateTargetDimensions = (width, height, angle) => {
   const sinValueForAngle = Math.sin(angle);
-  const sinValueForAngleSupplement = Math.sin(Math.PI / 2.0 - angle);
+  const sinValueForAngleSupplement = Math.sin(PI_BY_2 - angle);
 
   const w = Math.round(
     width * Math.abs(sinValueForAngleSupplement) + height * Math.abs(sinValueForAngle),
@@ -21,6 +27,7 @@ const calculateTargetDimensions = (width, height, angle) => {
   );
   return { width: w, height: h };
 };
+
 const rotatePoint = (pointX, pointY, centerX, centerY, radians) => {
   let x = pointX - centerX;
   let y = pointY - centerY;
@@ -37,60 +44,60 @@ const rotatePoint = (pointX, pointY, centerX, centerY, radians) => {
 };
 
 const rotateImage = (data, width, height, radians) => {
-  const targetDimensions = calculateTargetDimensions(width, height, radians);
-  const deltaX = Math.round((targetDimensions.width - width) / 2.0);
-  const deltaY = Math.round((targetDimensions.height - height) / 2.0);
-  const targetLineWidth = targetDimensions.width * 4;
-  const targetData = new Uint8ClampedArray(targetLineWidth * targetDimensions.height);
+  const targetImageMatrixDimensions = calculateTargetDimensions(width, height, radians);
+  const deltaX = Math.round((targetImageMatrixDimensions.width - width) / 2.0);
+  const deltaY = Math.round((targetImageMatrixDimensions.height - height) / 2.0);
+  const targetImageMatrixWidth = targetImageMatrixDimensions.width * SINGLE_PIXEL_DATA_LEN;
+  const targetImageData = new Uint8ClampedArray(targetImageMatrixWidth
+    * targetImageMatrixDimensions.height);
 
   const centerX = Math.trunc(width / 2);
   const centerY = Math.trunc(height / 2);
 
-  const sourceLineWidth = width * 4;
+  const matrixWidth = width * 4;
   let row = 0;
-  for (let i = 0, l = sourceLineWidth * height; i < l;) {
-    const x = Math.round((i % sourceLineWidth) / 4);
+  for (let col = 0, l = matrixWidth * height; col < l;) {
+    const x = Math.round((col % matrixWidth) / SINGLE_PIXEL_DATA_LEN);
     const y = row;
     const rotatedPoint = rotatePoint(x, y, centerX, centerY, radians);
     rotatedPoint.x += deltaX;
     rotatedPoint.y += deltaY;
     if (
       rotatedPoint.x >= 0
-      && rotatedPoint.x < targetDimensions.width
+      && rotatedPoint.x < targetImageMatrixDimensions.width
       && rotatedPoint.y >= 0
-      && rotatedPoint.y < targetDimensions.height
+      && rotatedPoint.y < targetImageMatrixDimensions.height
     ) {
-      const target = rotatedPoint.y * targetLineWidth + rotatedPoint.x * 4;
-      targetData[target] = data[i];
-      targetData[target + 1] = data[i + 1];
-      targetData[target + 2] = data[i + 2];
-      targetData[target + 3] = data[i + 3];
+      const target = rotatedPoint.y * targetImageMatrixWidth
+                   + rotatedPoint.x * SINGLE_PIXEL_DATA_LEN;
+      targetImageData[target] = data[col]; // RED
+      targetImageData[target + 1] = data[col + 1]; // GREEN
+      targetImageData[target + 2] = data[col + 2]; // BLUE
+      targetImageData[target + 3] = data[col + 3]; // ALPHA
     }
-    i += 4;
-    if (i % sourceLineWidth === 0) {
+    col += SINGLE_PIXEL_DATA_LEN;
+    if (col % matrixWidth === 0) {
       row += 1;
     }
   }
   return {
-    data: targetData,
-    width: targetDimensions.width,
-    height: targetDimensions.height,
+    data: targetImageData,
+    width: targetImageMatrixDimensions.width,
+    height: targetImageMatrixDimensions.height,
   };
 };
 
 const rotate = (image, angle) => {
   isImageDataValid(image);
-  if (typeof parseFloat(angle) !== 'number') {
+  if (Number.isNaN(parseFloat(angle))) {
     throw new Error('Angle must be number');
   }
   const radians = parseFloat((angle * (Math.PI / 180)).toFixed(2));
-  if (Math.abs(radians) % (Math.PI * 2.0).toFixed(2) === 0.0) {
+  if (Math.abs(radians) % (TWO_PI).toFixed(2) === 0.0) {
     return image;
   }
   const { data, width, height } = image;
   const result = rotateImage(data, width, height, radians);
-
   return new ImageData(Uint8ClampedArray.from(result.data), result.width, result.height);
 };
-
-export default rotate;
+module.exports = rotate;
