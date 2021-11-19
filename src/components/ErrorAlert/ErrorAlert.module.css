@@ -1,0 +1,14 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.errorMesssage {
+    align-self:center;
+    padding-bottom:10px;
+}
+
+.closeButton {
+    max-width:50px;
+    align-self:center;
+}

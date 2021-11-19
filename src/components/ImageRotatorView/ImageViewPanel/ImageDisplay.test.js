@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import ImageDisplay from './ImageDisplay';
 import { createMockImage, createContextData, customContextRender } from '../../../utils/testUtils';
 

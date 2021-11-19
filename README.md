@@ -6,6 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm install`
+Installs all the application dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -31,8 +34,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 ### `References`
-https://www.youtube.com/watch?v=OYuoPTRVzxY
-https://en.wikipedia.org/wiki/Rotation_matrix
-https://iiif.io/api/annex/notes/rotation/
+https://www.youtube.com/watch?v=OYuoPTRVzxY\
+https://en.wikipedia.org/wiki/Rotation_matrix\
+https://iiif.io/api/annex/notes/rotation/\
 
 
