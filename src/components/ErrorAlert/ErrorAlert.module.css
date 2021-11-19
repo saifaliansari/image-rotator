@@ -4,11 +4,14 @@
 }
 
 .errorMesssage {
-    align-self:center;
-    padding-bottom:10px;
+  align-self: center;
+  padding-bottom: 10px;
 }
 
 .closeButton {
-    max-width:50px;
-    align-self:center;
+  max-width: 50px;
+  align-self: center;
+  background-color: blue;
+  color: white;
+  border-color: transparent;
 }

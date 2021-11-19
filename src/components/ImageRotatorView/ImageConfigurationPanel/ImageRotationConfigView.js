@@ -35,7 +35,7 @@ const ImageRotationConfigView = () => {
     if (!Number.isNaN(parseFloat(angle))) {
       setAngleIsValid(true);
       if (!imageInfo) {
-        setErrorMessage('Please select an image first');
+        setErrorMessage('Please select an image first.');
         return;
       }
       const newRotatedImageInfo = rotateImage(imageInfo, angle, setErrorMessage);
