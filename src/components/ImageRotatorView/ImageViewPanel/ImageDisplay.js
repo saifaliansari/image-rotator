@@ -20,7 +20,7 @@ const ImageDisplay = () => {
     <div className={classes.imageDisplayContainer}>
       {processingTime > 0 && (
         <label className={classes.processingTime}>
-          {`Time to Render : ${parseInt(processingTime, 10)}ms`}
+          {`Time to Render: ${parseInt(processingTime, 10)}ms`}
         </label>
       )}
       <div className={classes.imageDisplayCanvasContainer}>

@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import rewire from 'rewire';
+import { createMockImage } from '../utils/testUtils';
 
 const myImageRotator = rewire('./ImageRotator.js');
 const isImageDataValid = myImageRotator.__get__('isImageDataValid');
@@ -8,18 +9,6 @@ const calculateTargetDimensions = myImageRotator.__get__('calculateTargetDimensi
 const rotatePoint = myImageRotator.__get__('rotatePoint');
 const rotateImage = myImageRotator.__get__('rotateImage');
 const rotate = myImageRotator.__get__('rotate');
-
-const createMockImage = () => {
-  // creating a stroke inside a rectangular space
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(2, 2);
-  ctx.stroke();
-  const imageData = ctx.getImageData(0, 0, 2, 2);
-  return imageData;
-};
 
 const createRotatedMockImage = () => {
   // creating a stroke inside a rectangular space that is rotated 90degrees
