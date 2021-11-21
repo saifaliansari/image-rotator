@@ -15,6 +15,10 @@ const isImageDataValid = (image) => {
   }
 };
 
+/*
+ This method calculates the dimension of the target rectangle
+ after rotation for a given angle
+*/
 const calculateTargetDimensions = (width, height, angle) => {
   const sinValueForAngle = Math.sin(angle);
   const sinValueForAngleSupplement = Math.sin(PI_BY_2 - angle);
@@ -28,6 +32,11 @@ const calculateTargetDimensions = (width, height, angle) => {
   return { width: w, height: h };
 };
 
+/*
+ * This method calculates the new coordinates of a point on a 2d plane after rotation
+ * for a given angle in relation to a given center. After the calculation it returns
+ * the new position removing the realtion with center
+*/
 const rotatePoint = (pointX, pointY, centerX, centerY, radians) => {
   let x = pointX - centerX;
   let y = pointY - centerY;
@@ -43,6 +52,11 @@ const rotatePoint = (pointX, pointY, centerX, centerY, radians) => {
   return { x: Math.round(x), y: Math.round(y) };
 };
 
+/*
+ * This method creates a new target array and fills it with data of the rotated image caluculated
+ * point by point using the rotation logic.The method sets a center to the image around which the 
+ * image has to be rotated
+*/
 const rotateImage = (data, width, height, radians) => {
   const targetImageMatrixDimensions = calculateTargetDimensions(width, height, radians);
   const deltaX = Math.round((targetImageMatrixDimensions.width - width) / 2.0);
