@@ -54,7 +54,7 @@ const rotatePoint = (pointX, pointY, centerX, centerY, radians) => {
 
 /*
  * This method creates a new target array and fills it with data of the rotated image caluculated
- * point by point using the rotation logic.The method sets a center to the image around which the 
+ * point by point using the rotation logic.The method sets a center to the image around which the
  * image has to be rotated
 */
 const rotateImage = (data, width, height, radians) => {
