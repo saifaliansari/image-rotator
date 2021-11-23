@@ -26,6 +26,7 @@ Builds the app for production to the `build` folder.\
 ### `References`
 https://www.youtube.com/watch?v=OYuoPTRVzxY \
 https://en.wikipedia.org/wiki/Rotation_matrix \
-https://iiif.io/api/annex/notes/rotation/
+https://iiif.io/api/annex/notes/rotation/ \
+https://stackoverflow.com/questions/2259476/rotating-a-point-about-another-point-2d
 
 
